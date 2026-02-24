@@ -21,7 +21,7 @@
             --cell-fixed: #e8e8e8;
             --cell-hover: #f0f0f0;
             --cell-selected: #c3d9ff;
-            --cell-highlight: #e3f2fd;
+            --cell-highlight: #fde68a;
             --accent: #2563eb;
             --accent-hover: #1d4ed8;
             --error: #dc2626;
@@ -38,7 +38,7 @@
             --cell-fixed: #353535;
             --cell-hover: #3a3a3a;
             --cell-selected: #1e3a5f;
-            --cell-highlight: #1e293b;
+            --cell-highlight: #78350f;
             --accent: #3b82f6;
             --accent-hover: #2563eb;
             --error: #ef4444;
@@ -296,14 +296,6 @@
             font-weight: 300;
         }
 
-        .stats {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
         .message {
             text-align: center;
             margin-top: 15px;
@@ -324,7 +316,7 @@
         .mode-toggle {
             display: flex;
             gap: 8px;
-            margin-bottom: 15px;
+            margin-top: 15px;
             justify-content: center;
         }
 
@@ -349,7 +341,7 @@
             }
 
             .mode-toggle {
-                margin-bottom: 8px;
+                margin-top: 8px;
             }
 
             .controls {
@@ -400,10 +392,6 @@
                 font-size: 14px;
             }
 
-            .stats {
-                margin-top: 8px;
-                font-size: 12px;
-            }
         }
     </style>
 </head>
@@ -446,15 +434,6 @@
                 </div>
             </div>
 
-            <div class="mode-toggle">
-                <button id="normal-mode-btn" class="active" onclick="setInputMode('normal')">
-                    ✏️ Normal
-                </button>
-                <button id="note-mode-btn" onclick="setInputMode('note')">
-                    📝 Anotação
-                </button>
-            </div>
-
             <div class="controls">
                 <button onclick="newGame()">🔄 Novo Jogo</button>
                 <button onclick="checkSolution()">✓ Verificar</button>
@@ -477,8 +456,16 @@
                 <button onclick="selectNumber(0)">✕</button>
             </div>
 
+            <div class="mode-toggle">
+                <button id="normal-mode-btn" class="active" onclick="setInputMode('normal')">
+                    ✏️ Normal
+                </button>
+                <button id="note-mode-btn" onclick="setInputMode('note')">
+                    📝 Anotação
+                </button>
+            </div>
+
             <div class="message" id="message"></div>
-            <div class="stats" id="stats"></div>
         </div>
     </div>
 
@@ -734,7 +721,6 @@
             });
             
             renderGrid();
-            updateStats();
             checkCompletion();
         }
 
@@ -820,7 +806,6 @@
             notesGrid = Array(9).fill(null).map(() => Array(9).fill(null).map(() => []));
             highlightedNumber = null;
             renderGrid();
-            updateStats();
             showMessage('🗑️ Tabuleiro limpo!', '');
         }
 
@@ -833,19 +818,7 @@
             selectedCell = null;
             highlightedNumber = null;
             renderGrid();
-            updateStats();
             showMessage('', '');
-        }
-
-        // Atualiza estatísticas
-        function updateStats() {
-            let filled = 0;
-            for (let row = 0; row < 9; row++) {
-                for (let col = 0; col < 9; col++) {
-                    if (currentGrid[row][col] !== 0) filled++;
-                }
-            }
-            document.getElementById('stats').textContent = `${filled}/81 células preenchidas`;
         }
 
         // Mostra mensagem
