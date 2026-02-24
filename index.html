@@ -50,11 +50,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 100dvh;
             background: var(--bg-primary);
             padding: 20px;
             color: var(--text-primary);
             transition: background 0.3s, color 0.3s;
+            overflow-y: auto;
         }
 
         .screen {
@@ -325,6 +326,84 @@
             gap: 8px;
             margin-bottom: 15px;
             justify-content: center;
+        }
+
+        /* Responsividade para mobile (iPhone e similares) */
+        @media (max-width: 520px) {
+            body {
+                align-items: flex-start;
+                padding: 8px;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+                margin-bottom: 20px;
+            }
+
+            .game-header {
+                margin-bottom: 12px;
+            }
+
+            .mode-toggle {
+                margin-bottom: 8px;
+            }
+
+            .controls {
+                margin-bottom: 10px;
+                gap: 5px;
+            }
+
+            button {
+                padding: 7px 10px;
+                font-size: 12px;
+            }
+
+            button.icon-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 16px;
+            }
+
+            .sudoku-grid {
+                width: 100%;
+                grid-template-columns: repeat(9, 1fr);
+                margin-bottom: 10px;
+            }
+
+            .cell {
+                width: auto;
+                height: auto;
+                aspect-ratio: 1;
+                font-size: 4.5vw;
+            }
+
+            .notes {
+                font-size: 1.5vw;
+                gap: 0;
+            }
+
+            .number-pad {
+                gap: 5px;
+                max-width: 300px;
+            }
+
+            .number-pad button {
+                font-size: 5vw;
+            }
+
+            .message {
+                margin-top: 8px;
+                font-size: 14px;
+            }
+
+            .stats {
+                margin-top: 8px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
