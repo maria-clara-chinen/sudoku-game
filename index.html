@@ -55,7 +55,7 @@
             padding: 20px;
             color: var(--text-primary);
             transition: background 0.3s, color 0.3s;
-            overflow-y: auto;
+            overflow: hidden;
         }
 
         .screen {
@@ -323,8 +323,11 @@
         /* Responsividade para mobile (iPhone e similares) */
         @media (max-width: 520px) {
             body {
-                align-items: flex-start;
                 padding: 8px;
+            }
+
+            body.game-active {
+                align-items: flex-start;
             }
 
             .container {
@@ -436,7 +439,6 @@
 
             <div class="controls">
                 <button onclick="newGame()">🔄 Novo Jogo</button>
-                <button onclick="checkSolution()">✓ Verificar</button>
                 <button onclick="solveGame()">💡 Resolver</button>
                 <button onclick="clearBoard()">🗑️ Limpar</button>
             </div>
@@ -465,7 +467,7 @@
                 </button>
             </div>
 
-            <div class="message" id="message"></div>
+            <div class="message" id="message" style="display:none;"></div>
         </div>
     </div>
 
@@ -488,14 +490,16 @@
         }
 
         function backToMenu() {
+            document.body.classList.remove('game-active');
             showScreen('start-screen');
         }
 
         function startGame(diff) {
             difficulty = diff;
-            document.getElementById('difficulty-label').textContent = 
+            document.getElementById('difficulty-label').textContent =
                 diff === 'easy' ? 'Fácil' : diff === 'medium' ? 'Médio' : 'Difícil';
             newGame();
+            document.body.classList.add('game-active');
             showScreen('game-screen');
         }
 
