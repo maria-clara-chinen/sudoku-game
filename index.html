@@ -207,14 +207,16 @@
             background: var(--border-thick);
             border: 2px solid var(--border-thick);
             margin: 0 auto 20px;
-            width: fit-content;
+            width: 100%;
+            max-width: 450px;
             border-radius: 4px;
             overflow: hidden;
         }
 
         .cell {
-            width: 50px;
-            height: 50px;
+            width: auto;
+            height: auto;
+            aspect-ratio: 1;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -320,9 +322,76 @@
             justify-content: center;
         }
 
-        /* Responsividade para mobile (iPhone e similares) */
+        /* Layout do jogo — todos os tamanhos de tela */
+        body.game-active {
+            padding: 0;
+            align-items: stretch;
+        }
+
+        body.game-active #game-screen {
+            display: flex;
+            width: 100%;
+            height: 100dvh;
+            justify-content: center;
+        }
+
+        body.game-active #game-screen .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            max-width: 520px;
+            padding: 16px 24px;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            gap: 10px;
+        }
+
+        body.game-active .game-header {
+            flex-shrink: 0;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        body.game-active .controls {
+            flex-shrink: 0;
+            margin-bottom: 0;
+        }
+
+        /* Grid: quadrado, limitado ao espaço disponível */
+        body.game-active .sudoku-grid {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            max-width: 100%;
+            max-height: 450px;
+            aspect-ratio: 1;
+            align-self: center;
+            margin: 0;
+        }
+
+        body.game-active .number-pad {
+            flex-shrink: 0;
+            max-width: 340px;
+            margin: 0 auto;
+        }
+
+        body.game-active .mode-toggle {
+            flex-shrink: 0;
+            margin-top: 0;
+        }
+
+        body.game-active .message {
+            flex-shrink: 0;
+            margin-top: 0;
+            min-height: 0;
+        }
+
+        /* Ajustes para mobile */
         @media (max-width: 520px) {
-            /* Tela de início: comportamento padrão */
             body {
                 padding: 8px;
             }
@@ -336,39 +405,13 @@
                 padding: 16px;
             }
 
-            /* Tela do jogo: ocupa toda a tela, sem scroll */
-            body.game-active {
-                padding: 0;
-                align-items: stretch;
-            }
-
-            body.game-active #game-screen {
-                display: flex;
-                width: 100%;
-                height: 100dvh;
-            }
-
             body.game-active #game-screen .container {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                height: 100%;
                 padding: 10px 12px;
                 max-width: 100%;
-                border-radius: 0;
-                box-shadow: none;
-                overflow: hidden;
                 gap: 8px;
             }
 
-            .game-header {
-                flex-shrink: 0;
-                margin-bottom: 0;
-            }
-
-            .controls {
-                flex-shrink: 0;
-                margin-bottom: 0;
+            body.game-active .controls {
                 gap: 5px;
             }
 
@@ -383,20 +426,12 @@
                 font-size: 16px;
             }
 
-            /* Grid: ocupa o espaço restante e mantém proporção quadrada */
-            .sudoku-grid {
-                flex: 1;
-                min-height: 0;
-                max-width: 100%;
-                aspect-ratio: 1;
-                align-self: center;
-                margin-bottom: 0;
+            /* No mobile, o grid ocupa todo o espaço disponível sem limite fixo */
+            body.game-active .sudoku-grid {
+                max-height: none;
             }
 
             .cell {
-                width: auto;
-                height: auto;
-                aspect-ratio: 1;
                 font-size: 4.5vw;
             }
 
@@ -405,28 +440,17 @@
                 gap: 0;
             }
 
-            /* Teclado numérico */
-            .number-pad {
-                flex-shrink: 0;
+            body.game-active .number-pad {
                 gap: 5px;
                 max-width: 300px;
-                margin: 0 auto;
             }
 
             .number-pad button {
                 font-size: 5vw;
             }
 
-            .mode-toggle {
-                flex-shrink: 0;
-                margin-top: 0;
-            }
-
             .message {
-                flex-shrink: 0;
-                margin-top: 0;
                 font-size: 14px;
-                min-height: 0;
             }
         }
     </style>
