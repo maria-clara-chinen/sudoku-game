@@ -363,11 +363,8 @@
 
         /* Grid: quadrado, limitado ao espaço disponível */
         body.game-active .sudoku-grid {
-            flex: 1;
-            min-height: 0;
-            width: auto;
-            max-width: 100%;
-            max-height: 450px;
+            flex: none;
+            width: min(calc(100vw - 48px), min(450px, calc(100dvh - 320px)));
             aspect-ratio: 1;
             align-self: center;
             margin: 0;
@@ -426,9 +423,9 @@
                 font-size: 16px;
             }
 
-            /* No mobile, limita o grid à largura disponível */
+            /* No mobile, ajusta para padding menor (12px × 2 = 24px) */
             body.game-active .sudoku-grid {
-                max-height: 100%;
+                width: min(calc(100vw - 24px), min(450px, calc(100dvh - 280px)));
             }
 
             .cell {
