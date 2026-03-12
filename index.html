@@ -289,7 +289,9 @@
             grid-template-columns: repeat(5, 1fr);
             gap: 8px;
             max-width: 400px;
+            width: 100%;
             margin: 0 auto;
+            align-self: center;
         }
 
         .number-pad button {
@@ -320,6 +322,8 @@
             gap: 8px;
             margin-top: 15px;
             justify-content: center;
+            width: 100%;
+            align-self: center;
         }
 
         /* Layout do jogo — todos os tamanhos de tela */
@@ -373,12 +377,17 @@
         body.game-active .number-pad {
             flex-shrink: 0;
             max-width: 340px;
+            width: 100%;
             margin: 0 auto;
+            align-self: center;
         }
 
         body.game-active .mode-toggle {
             flex-shrink: 0;
             margin-top: 0;
+            width: 100%;
+            align-self: center;
+            justify-content: center;
         }
 
         body.game-active .message {
@@ -440,6 +449,8 @@
             body.game-active .number-pad {
                 gap: 5px;
                 max-width: 300px;
+                width: 100%;
+                align-self: center;
             }
 
             .number-pad button {
